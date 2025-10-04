@@ -1,0 +1,61 @@
+### ➕ Add a Customer
+POST http://localhost:5000/customers
+Content-Type: application/json
+
+{
+  "name": "Sonu",
+  "email": "sonu999@gmail.com",
+  "phone": "9999000099",
+  "address": "illahinagar Ranchi Jharkhand"
+}
+
+### 📄 Get All Customers
+GET http://localhost:5000/customers68cfe68994b4340331e96df0
+
+### 📄 Get One Customer by ID
+GET http://localhost:5000/customers/68cfe68994b4340331e96df0
+
+### ✏️ Update Customer
+PUT http://localhost:5000/customers/68cfe68994b4340331e96df0
+Content-Type: application/json
+
+{
+  "phone": "9456747474"
+}
+
+### ❌ Delete Customer
+DELETE http://localhost:5000/customers/68d5536624b4e564e3939062
+
+### ============================
+### 🚀 ORDERS API
+### ============================
+
+### ➕ Create an Order (replace CUSTOMER_ID with a real ID)
+POST http://localhost:5000/orders
+Content-Type: application/json
+
+{
+  "customerId": "68d5536624b4e564e3939062",
+  "product": "lollipop",
+  "quantity": 100,
+  "price": 200,
+  "status": "Pending"
+}
+
+### 📄 Get All Orders
+GET http://localhost:5000/orders
+
+### 📄 Get Orders by Customer ID
+GET http://localhost:5000/orders/customer/68d5536624b4e564e3939062
+
+### ✏️ Update Order (replace ORDER_ID with real ID)
+PUT http://localhost:5000/orders/68d5536624b4e564e3939062
+Content-Type: application/json
+
+{
+  "status": "Shipped"
+}
+
+### ❌ Delete Order (replace ORDER_ID with real ID)
+DELETE http://localhost:5000/orders/68d5536624b4e564e3939062
+
