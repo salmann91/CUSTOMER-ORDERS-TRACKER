@@ -1,0 +1,3 @@
+[submodule "customer-order-frontend"]
+	path = customer-order-frontend
+	url = https://github.com/salmann91/CUSTOMER-ORDERS-TRACKER
