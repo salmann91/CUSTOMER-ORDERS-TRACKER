@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>🛒 Customer Orders Management</h1>
+        <h1>🛒 Customer Orders Tracker</h1>
         <nav className="nav">
           <button 
             className={activeTab === "dashboard" ? "active" : ""}

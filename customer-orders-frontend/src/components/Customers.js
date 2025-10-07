@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from '../config';
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -15,7 +16,7 @@ export default function Customers() {
   const fetchCustomers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/customers");
+      const res = await axios.get(`${API_URL}/customers`);
       setCustomers(res.data);
     } catch (error) {
       console.error("Error fetching customers:", error);
@@ -35,10 +36,10 @@ export default function Customers() {
     try {
       setSubmitting(true);
       if (editingId) {
-        await axios.put(`http://localhost:5000/customers/${editingId}`, form);
+        await axios.put(`${API_URL}/customers/${editingId}`, form);
         setEditingId(null);
       } else {
-        await axios.post("http://localhost:5000/customers", form);
+        await axios.post(`${API_URL}/customers`, form);
       }
       setForm({ name: "", email: "", phone: "", address: "" });
       await fetchCustomers();
@@ -58,7 +59,7 @@ export default function Customers() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this customer?")) {
       try {
-        await axios.delete(`http://localhost:5000/customers/${id}`);
+        await axios.delete(`${API_URL}/customers/${id}`);
         fetchCustomers();
       } catch (error) {
         console.error("Error deleting customer:", error);

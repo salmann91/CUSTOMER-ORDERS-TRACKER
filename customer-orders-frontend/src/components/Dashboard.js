@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from '../config';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -23,8 +24,8 @@ export default function Dashboard() {
   const fetchStats = async () => {
     try {
       const [customersRes, ordersRes] = await Promise.all([
-        axios.get("http://localhost:5000/customers"),
-        axios.get("http://localhost:5000/orders")
+        axios.get(`${API_URL}/customers`),
+        axios.get(`${API_URL}/orders`)
       ]);
       
       const orders = ordersRes.data;
@@ -44,7 +45,7 @@ export default function Dashboard() {
 
   const fetchRecentOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/orders");
+      const res = await axios.get(`${API_URL}/orders`);
       setRecentOrders(res.data.slice(0, 5));
     } catch (error) {
       console.error("Error fetching recent orders:", error);

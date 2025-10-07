@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from '../config';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -21,7 +22,7 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/orders");
+      const res = await axios.get(`${API_URL}/orders`);
       setOrders(res.data);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -31,7 +32,7 @@ export default function Orders() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/customers");
+      const res = await axios.get(`${API_URL}/customers`);
       setCustomers(res.data);
     } catch (error) {
       console.error("Error fetching customers:", error);
@@ -49,10 +50,10 @@ export default function Orders() {
     try {
       setSubmitting(true);
       if (editingId) {
-        await axios.put(`http://localhost:5000/orders/${editingId}`, form);
+        await axios.put(`${API_URL}/orders/${editingId}`, form);
         setEditingId(null);
       } else {
-        await axios.post("http://localhost:5000/orders", form);
+        await axios.post(`${API_URL}/orders`, form);
       }
       setForm({ customerId: "", product: "", quantity: 1, price: 0, status: "Pending" });
       await fetchOrders();
@@ -78,7 +79,7 @@ export default function Orders() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this order?")) {
       try {
-        await axios.delete(`http://localhost:5000/orders/${id}`);
+        await axios.delete(`${API_URL}/orders/${id}`);
         fetchOrders();
       } catch (error) {
         console.error("Error deleting order:", error);
@@ -89,7 +90,7 @@ export default function Orders() {
 
   const handleStatusUpdate = async (orderId, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/orders/${orderId}`, { status: newStatus });
+      await axios.put(`${API_URL}/orders/${orderId}`, { status: newStatus });
       fetchOrders();
     } catch (error) {
       console.error("Error updating status:", error);
